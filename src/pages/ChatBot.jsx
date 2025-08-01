@@ -89,7 +89,7 @@ export default function ChatBot({ onClose }) {
     setIsBotTyping(true);
 
     try {
-      const response = await axios.post("http://localhost:5000/chat", {
+      const response = await axios.post("https://chatbot-production-2e4c.up.railway.app/chat", {
         message: userInput,
       });
 
