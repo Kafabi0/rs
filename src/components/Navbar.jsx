@@ -4,7 +4,7 @@ import {
   faHouse,
   faUserInjured,
   faSignOutAlt,
-  faClipboardList,
+  // faClipboardList,
   faHospital,
   faStethoscope,
   // faSignInAlt,
@@ -115,7 +115,7 @@ export default function Navbar() {
             </li>
 
             {/* Pendaftaran - selalu tampil */}
-            <li className="nav-item dropdown">
+            {/* <li className="nav-item dropdown">
               <a
                 href="#!"
                 className="nav-link dropdown-toggle d-flex align-items-center text-primary"
@@ -154,7 +154,7 @@ export default function Navbar() {
                   </Link>
                 </li>
               </ul>
-            </li>
+            </li> */}
           </ul>
 
           {/* Login / Logout */}
