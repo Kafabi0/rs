@@ -20,93 +20,102 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+    <nav
+      className="navbar navbar-expand-lg navbar-light bg-white shadow sticky-top"
+      style={{ borderRadius: "50px", margin: "20px" }}
+    >
       <div className="container">
-        {/* Logo */}
         <Link to="/" className="navbar-brand d-flex align-items-center">
           <img
             src="../assets/rs1.png"
             alt="logo rs"
-            style={{ width: "40px", height: "40px", marginRight: "10px" }}
+            style={{ width: "50px", height: "50px", marginRight: "10px" }}
           />
           <span className="fw-bold text-primary">RS Sehat Sentosa</span>
         </Link>
 
-        {/* Hamburger button */}
         <button
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* Navigasi */}
-        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div className="navbar-nav ms-auto align-items-lg-center">
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                `nav-link d-flex align-items-center mx-lg-2 ${
-                  isActive ? "fw-bold text-primary" : "text-primary"
-                }`
-              }
-            >
-              <FontAwesomeIcon icon={faHouse} className="me-2" />
-              Beranda
-            </NavLink>
+        <div className="collapse navbar-collapse justify-content-between" id="navbarNav">
+          <ul className="navbar-nav mb-2 mb-lg-0">
+            <li className="nav-item">
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  `nav-link d-flex align-items-center ${
+                    isActive ? "fw-bold text-primary" : "text-primary"
+                  }`
+                }
+              >
+                <FontAwesomeIcon icon={faHouse} className="me-2" />
+                Beranda
+              </NavLink>
+            </li>
 
-            <NavLink
-              to="/dokter"
-              className={({ isActive }) =>
-                `nav-link d-flex align-items-center mx-lg-2 ${
-                  isActive ? "fw-bold text-primary" : "text-primary"
-                }`
-              }
-            >
-              <FontAwesomeIcon icon={faUserInjured} className="me-2" />
-              Dokter
-            </NavLink>
+            <li className="nav-item">
+              <NavLink
+                to="/dokter"
+                className={({ isActive }) =>
+                  `nav-link d-flex align-items-center ${
+                    isActive ? "fw-bold text-primary" : "text-primary"
+                  }`
+                }
+              >
+                <FontAwesomeIcon icon={faUserInjured} className="me-2" />
+                Dokter
+              </NavLink>
+            </li>
 
-            <NavLink
-              to="/fasilitas"
-              className={({ isActive }) =>
-                `nav-link d-flex align-items-center mx-lg-2 ${
-                  isActive ? "fw-bold text-primary" : "text-primary"
-                }`
-              }
-            >
-              <FontAwesomeIcon icon={faHospital} className="me-2" />
-              Fasilitas
-            </NavLink>
+            <li className="nav-item">
+              <NavLink
+                to="/fasilitas"
+                className={({ isActive }) =>
+                  `nav-link d-flex align-items-center ${
+                    isActive ? "fw-bold text-primary" : "text-primary"
+                  }`
+                }
+              >
+                <FontAwesomeIcon icon={faHospital} className="me-2" />
+                Fasilitas
+              </NavLink>
+            </li>
 
-            <NavLink
-              to="/farmasi"
-              className={({ isActive }) =>
-                `nav-link d-flex align-items-center mx-lg-2 ${
-                  isActive ? "fw-bold text-primary" : "text-primary"
-                }`
-              }
-            >
-              <FontAwesomeIcon icon={faStethoscope} className="me-2" />
-              Farmasi
-            </NavLink>
+            <li className="nav-item">
+              <NavLink
+                to="/farmasi"
+                className={({ isActive }) =>
+                  `nav-link d-flex align-items-center ${
+                    isActive ? "fw-bold text-primary" : "text-primary"
+                  }`
+                }
+              >
+                <FontAwesomeIcon icon={faStethoscope} className="me-2" />
+                Farmasi
+              </NavLink>
+            </li>
+          </ul>
 
-            {/* Logout hanya muncul jika login */}
-            {token && (
+          {token && (
+            <div className="text-end">
               <button
+                className="btn btn-outline-danger text-primary d-flex align-items-center"
                 onClick={handleLogout}
-                className="btn btn-outline-danger text-primary d-flex align-items-center mx-lg-2 mt-2 mt-lg-0"
               >
                 <FontAwesomeIcon icon={faSignOutAlt} className="me-2" />
                 Logout
               </button>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </nav>
