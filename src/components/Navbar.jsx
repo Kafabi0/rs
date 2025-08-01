@@ -4,24 +4,13 @@ import {
   faHouse,
   faUserInjured,
   faSignOutAlt,
-  // faClipboardList,
   faHospital,
   faStethoscope,
-  // faSignInAlt,
 } from "@fortawesome/free-solid-svg-icons";
-// import aos from "aos";
-// import "aos/dist/aos.css";
-// import { useEffect } from "react";
 
 export default function Navbar() {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-
-  // useEffect(() => {
-  //   aos.init({
-  //     duration: 1000,
-  //   });
-  // }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -31,138 +20,87 @@ export default function Navbar() {
   };
 
   return (
-    <nav
-      className="navbar navbar-expand-lg navbar-dark bg-white shadow sticky-top"
-      // data-aos="fade-down"
-      style={{ borderRadius: "50px", margin: "20px" }}
-    >
-      <div className="container-fluid">
+    <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+      <div className="container">
+        {/* Logo */}
         <Link to="/" className="navbar-brand d-flex align-items-center">
           <img
             src="../assets/rs1.png"
             alt="logo rs"
-            style={{ width: "50px", height: "50px", marginRight: "10px" }}
+            style={{ width: "40px", height: "40px", marginRight: "10px" }}
           />
           <span className="fw-bold text-primary">RS Sehat Sentosa</span>
         </Link>
 
+        {/* Hamburger button */}
         <button
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <NavLink
-                to="/"
-                className={({ isActive }) =>
-                  `nav-link d-flex align-items-center ${
-                    isActive ? "fw-bold text-primary" : "text-primary"
-                  }`
-                }
-              >
-                <FontAwesomeIcon icon={faHouse} className="me-2" />
-                Beranda
-              </NavLink>
-            </li>
+        {/* Navigasi */}
+        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div className="navbar-nav ms-auto align-items-lg-center">
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                `nav-link d-flex align-items-center mx-lg-2 ${
+                  isActive ? "fw-bold text-primary" : "text-primary"
+                }`
+              }
+            >
+              <FontAwesomeIcon icon={faHouse} className="me-2" />
+              Beranda
+            </NavLink>
 
-            <li className="nav-item">
-              <NavLink
-                to="/dokter"
-                className={({ isActive }) =>
-                  `nav-link d-flex align-items-center ${
-                    isActive ? "fw-bold text-primary" : "text-primary"
-                  }`
-                }
-              >
-                <FontAwesomeIcon icon={faUserInjured} className="me-2" />
-                Dokter
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                to="/fasilitas"
-                className={({ isActive }) =>
-                  `nav-link d-flex align-items-center ${
-                    isActive ? "fw-bold text-primary" : "text-primary"
-                  }`
-                }
-              >
-                <FontAwesomeIcon icon={faHospital} className="me-2" />
-                Fasilitas
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                to="/farmasi"
-                className={({ isActive }) =>
-                  `nav-link d-flex align-items-center ${
-                    isActive ? "fw-bold text-primary" : "text-primary"
-                  }`
-                }
-              >
-                <FontAwesomeIcon icon={faStethoscope} className="me-2" />
-                Farmasi
-              </NavLink>
-            </li>
+            <NavLink
+              to="/dokter"
+              className={({ isActive }) =>
+                `nav-link d-flex align-items-center mx-lg-2 ${
+                  isActive ? "fw-bold text-primary" : "text-primary"
+                }`
+              }
+            >
+              <FontAwesomeIcon icon={faUserInjured} className="me-2" />
+              Dokter
+            </NavLink>
 
-            {/* Pendaftaran - selalu tampil */}
-            {/* <li className="nav-item dropdown">
-              <a
-                href="#!"
-                className="nav-link dropdown-toggle d-flex align-items-center text-primary"
-                id="pendaftaranDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <FontAwesomeIcon icon={faClipboardList} className="me-2" />
-                Pendaftaran
-              </a>
-              <ul
-                className="dropdown-menu"
-                aria-labelledby="pendaftaranDropdown"
-              >
-                  <li>
-                    <Link className="dropdown-item" to="/pendaftaran/riwayat">
-                      Data Pendaftaran Konsultasi dan Pemeriksaan
-                    </Link>
-                  </li>
+            <NavLink
+              to="/fasilitas"
+              className={({ isActive }) =>
+                `nav-link d-flex align-items-center mx-lg-2 ${
+                  isActive ? "fw-bold text-primary" : "text-primary"
+                }`
+              }
+            >
+              <FontAwesomeIcon icon={faHospital} className="me-2" />
+              Fasilitas
+            </NavLink>
 
+            <NavLink
+              to="/farmasi"
+              className={({ isActive }) =>
+                `nav-link d-flex align-items-center mx-lg-2 ${
+                  isActive ? "fw-bold text-primary" : "text-primary"
+                }`
+              }
+            >
+              <FontAwesomeIcon icon={faStethoscope} className="me-2" />
+              Farmasi
+            </NavLink>
 
-                <li>
-                  <Link className="dropdown-item" to="/pendaftaran">
-                    Daftar Konsultasi dan Pemerikasaan
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/rawatinap">
-                    Pendaftaran Rawat Inap
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/riwayatrawatinap">
-                    Lihat Rawat Inap
-                  </Link>
-                </li>
-              </ul>
-            </li> */}
-          </ul>
-
-          {/* Login / Logout */}
-          <div className="d-flex">
+            {/* Logout hanya muncul jika login */}
             {token && (
               <button
-                className="btn btn-outline-danger text-primary d-flex align-items-center"
                 onClick={handleLogout}
+                className="btn btn-outline-danger text-primary d-flex align-items-center mx-lg-2 mt-2 mt-lg-0"
               >
                 <FontAwesomeIcon icon={faSignOutAlt} className="me-2" />
                 Logout

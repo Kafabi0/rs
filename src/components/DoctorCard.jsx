@@ -6,7 +6,7 @@ export default function DoctorCard({ doctor }) {
           src={doctor.image}
           className="card-img-top doctor-img"
           alt={doctor.name}
-          style={{ objectFit: "cover", height: 280 }}
+          style={{ objectFit: "contain", height: 280 }}
         />
         <div className="card-body text-center">
           <h5 className="card-title fw-bold">{doctor.name}</h5>
