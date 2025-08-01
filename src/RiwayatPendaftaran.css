@@ -1,0 +1,28 @@
+.scroll-container {
+  max-height: 391px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.scroll-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.animate-card {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeSlideUp 0.4s forwards;
+  animation-timing-function: ease-out;
+}
+
+@keyframes fadeSlideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

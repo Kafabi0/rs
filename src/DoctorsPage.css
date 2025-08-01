@@ -1,0 +1,19 @@
+.doctor-img {
+  transition: transform 0.3s ease;
+  border-radius: 0.25rem;
+  position: relative;
+  z-index: 1;
+  /* Tidak ada box-shadow di default */
+}
+
+.doctor-img:hover {
+  transform: translateZ(30px) scale(1.05) translateY(-10px);
+  /* Hapus box-shadow supaya tidak muncul background */
+  box-shadow: none;
+  z-index: 10;
+}
+.card:hover {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
