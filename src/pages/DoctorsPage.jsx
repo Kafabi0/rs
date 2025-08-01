@@ -9,7 +9,7 @@ import Footer from "../components/Footer";
 const doctorsData = [
   {
     id: 1,
-    name: "Dr. Ras Wa",
+    name: "Dr. rsw andi",
     specialty: "Dokter Spesialis Jantung",
     image: "../assets/dokter4.png",
     social: { twitter: "#", facebook: "#", linkedin: "#" },
@@ -23,7 +23,7 @@ const doctorsData = [
   },
   {
     id: 3,
-    name: "Dr. Budi Nugroho",
+    name: "Dr. Budi N",
     specialty: "Dokter Spesialis Kulit",
     image: "../assets/dokter3.png",
     social: { twitter: "#", facebook: "#", linkedin: "#" },
