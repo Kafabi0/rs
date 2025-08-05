@@ -1,99 +1,117 @@
-import { useEffect, useState } from "react";
-import SearchInput from "../../components/SearchInput";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 import Navadmin from "../../components/Navadmin";
 
+export default function ListObat() {
+  const [dataObat, setDataObat] = useState([]);
+  const navigate = useNavigate();
 
+  const getDataObat = async () => {
+    try {
+      const response = await axios.get("https://be-production-6fef.up.railway.app/api/obat");
+      setDataObat(response.data);
+    } catch (error) {
+      console.error("Gagal mengambil data:", error.message);
+      Swal.fire("Gagal", "Tidak bisa mengambil data obat.", "error");
+    }
+  };
 
-export default function DashboardAdmin() {
-  // const username = localStorage.getItem("username") || "Pengguna";
+  const handleDelete = async (id) => {
+    const konfirmasi = window.confirm("Yakin ingin menghapus?");
+    if (!konfirmasi) return;
 
-  const [pasiens, setPasiens] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [searchTerm, setSearchTerm] = useState("");
+    try {
+      await axios.delete(`http://localhost:8080/api/obat/delete?id=${id}`);
+      getDataObat();
+      Swal.fire("Berhasil", "Obat dihapus", "success");
+    } catch (error) {
+      console.error("Gagal menghapus:", error.message);
+      Swal.fire("Gagal", `Gagal menghapus obat: ${error.message}`, "error");
+    }
+  };
 
-  // Fetch data pasien saat komponen mount
+  const handleEdit = (obat) => {
+    navigate("/admin/editobat", { state: { obat } });
+  };
+
   useEffect(() => {
-    const fetchPasiens = async () => {
-      try {
-        const res = await fetch("https://be-production-6fef.up.railway.app/pasien");
-        if (!res.ok) throw new Error("Gagal mengambil data pasien");
-        const data = await res.json();
-        setPasiens(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchPasiens();
+    getDataObat();
   }, []);
 
-  // Filter pasien berdasarkan kata kunci
-  const filteredPasiens = pasiens.filter((p) =>
-    p.nama.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    p.alamat.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    p.jenis_kelamin.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    p.no_telepon.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
   return (
-    <div
-      className="d-flex"
-      style={{ height: "100vh", overflow: "hidden", backgroundColor: "#f8f9fa" }}
-    >
-<Navadmin/>
-      <div className="flex-grow-1 position-relative p-4" style={{ overflowY: "auto" }}>
-        {/* Input Pencarian */}
-        <div className="container d-flex justify-content-center mb-4 rounded shadow-sm p-3 bg-white" style={{ maxWidth: "900px" }}>
-          <div style={{ width: "100%", maxWidth: "400px" }}>
-            <SearchInput
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Cari berdasarkan nama, alamat, jenis kelamin, atau no telepon..."
-            />
-          </div>
-        </div>
+    <div className="d-flex w-100" style={{ minHeight: "100vh" }}>
+      {/* Sidebar */}
+      <div className=" text-white" style={{ width: "250px" }}>
+        <Navadmin />
+      </div>
 
-        {/* Welcome Section */}
+      {/* Main Content */}
+      <div className="flex-grow-1 p-4 bg-light">
+        <div className="container">
+          <div className="card shadow-lg border-0 animate__animated animate__fadeInUp">
+            <div className="card-header bg-success text-white text-center">
+              <h4 className="mb-0 fw-bold">📋 Daftar Obat</h4>
+            </div>
 
-        {/* Tabel Daftar Pasien */}
-        <div className="mt-4 bg-white p-4 rounded shadow" style={{ maxWidth: "900px", margin: "auto" }}>
-          <h3 className="mb-3 text-success">Daftar Pasien</h3>
-
-          {loading && <p>Loading data pasien...</p>}
-          {error && <p className="text-danger">Error: {error}</p>}
-
-          {!loading && !error && (
-            <table className="table table-bordered table-hover">
-              <thead className="table-success">
-                <tr>
-                  <th>Nama</th>
-                  <th>Umur</th>
-                  <th>Jenis Kelamin</th>
-                  <th>Alamat</th>
-                  <th>No Telepon</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredPasiens.length === 0 ? (
+            <div className="card-body table-responsive">
+              <table className="table table-hover align-middle text-center">
+                <thead className="table-success text-dark">
                   <tr>
-                    <td colSpan="5" className="text-center text-muted">Tidak ada pasien ditemukan.</td>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Jenis</th>
+                    <th>Stok</th>
+                    <th>Harga</th>
+                    <th>Kategori</th>
+                    <th>Kegunaan</th>
+                    <th>Aksi</th>
                   </tr>
-                ) : (
-                  filteredPasiens.map((p) => (
-                    <tr key={p.id}>
-                      <td>{p.nama}</td>
-                      <td>{p.umur}</td>
-                      <td>{p.jenis_kelamin}</td>
-                      <td>{p.alamat}</td>
-                      <td>{p.no_telepon}</td>
+                </thead>
+                <tbody>
+                  {dataObat.length === 0 ? (
+                    <tr>
+                      <td colSpan="8" className="text-muted text-center">
+                        <i>Belum ada data obat</i>
+                      </td>
                     </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          )}
+                  ) : (
+                    dataObat.map((obat, index) => (
+                      <tr
+                        key={obat.ID || obat.id || `${obat.nama}-${obat.jenis}`}
+                        className="animate__animated animate__fadeIn"
+                      >
+                        <td>{index + 1}</td>
+                        <td><span className="badge bg-primary">{obat.nama}</span></td>
+                        <td>{obat.jenis}</td>
+                        <td><span className="badge bg-warning text-dark">{obat.stok}</span></td>
+                        <td>Rp {obat.harga.toLocaleString("id-ID")}</td>
+                        <td><span className="badge bg-info text-dark">{obat.kategori}</span></td>
+                        <td className="text-start">{obat.kegunaan}</td>
+                        <td>
+                          <div className="d-flex justify-content-center gap-2">
+                            <button
+                              className="btn btn-sm btn-outline-warning"
+                              onClick={() => handleEdit(obat)}
+                            >
+                              ✏️ Edit
+                            </button>
+                            <button
+                              className="btn btn-sm btn-outline-danger"
+                              onClick={() => handleDelete(obat.ID || obat.id)}
+                            >
+                              🗑️ Hapus
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>
