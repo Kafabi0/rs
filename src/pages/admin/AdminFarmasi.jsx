@@ -42,7 +42,7 @@ export default function AdminFarmasi() {
     };
 
     try {
-      await axios.post("http://localhost:8080/api/obat", dataToSend);
+      await axios.post("https://be-production-6fef.up.railway.app/api/obat", dataToSend);
       Swal.fire("Berhasil", "Obat berhasil ditambahkan", "success");
 
       setForm({

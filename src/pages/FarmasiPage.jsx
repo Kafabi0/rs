@@ -24,7 +24,7 @@ export default function FarmasiPage() {
 
   const loadData = () => {
     setLoading(true);
-    fetch("http://localhost:8080/api/obat")
+    fetch("https://be-production-6fef.up.railway.app/api/obat")
       .then((res) => res.json())
       .then((data) => {
         setObatList(data);

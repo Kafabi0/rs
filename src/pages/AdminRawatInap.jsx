@@ -20,7 +20,7 @@ export default function AdminRawatInap() {
 
   const fetchRawatInap = () => {
     axios
-      .get("http://localhost:8080/api/rawat-inap")
+      .get("https://be-production-6fef.up.railway.app/api/rawat-inap")
       .then((res) => setRawats(res.data))
       .catch(() => setError("Gagal ambil data rawat inap"));
   };

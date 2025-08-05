@@ -13,7 +13,7 @@ export default function AdminPendaftaran({ token }) {
 
   const fetchData = () => {
     setLoading(true);
-    fetch("http://localhost:8080/api/pendaftaran", {
+    fetch("https://be-production-6fef.up.railway.app/api/pendaftaran", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())

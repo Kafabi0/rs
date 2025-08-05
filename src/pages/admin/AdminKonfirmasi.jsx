@@ -12,7 +12,7 @@ export default function AdminKonfirmasi({ token }) {
   // Fetch konfirmasi dengan useCallback supaya stabil
   const fetchKonfirmasi = useCallback(() => {
     setLoading(true);
-    fetch("http://localhost:8080/api/konfirmasi", {
+    fetch("https://be-production-6fef.up.railway.app/api/konfirmasi", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => {

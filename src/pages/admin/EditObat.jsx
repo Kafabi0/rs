@@ -54,7 +54,7 @@ export default function EditObat() {
     };
 
     try {
-      await axios.put(`http://localhost:8080/api/obat/update?id=${editingId}`, dataToSend);
+      await axios.put(`https://be-production-6fef.up.railway.app/api/obat/update?id=${editingId}`, dataToSend);
       Swal.fire("Berhasil", "Obat berhasil diperbarui", "success");
       navigate("/admin/daftarobat");
     } catch (error) {

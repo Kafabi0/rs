@@ -23,7 +23,7 @@ export default function LoginRegister() {
     const endpoint = isLogin ? "/api/login" : "/api/register";
 
     try {
-      const res = await axios.post(`http://localhost:8080${endpoint}`, {
+      const res = await axios.post(`https://be-production-6fef.up.railway.app${endpoint}`, {
         username,
         password,
       });

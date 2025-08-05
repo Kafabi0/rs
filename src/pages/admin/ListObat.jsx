@@ -10,7 +10,7 @@ export default function ListObat() {
 
   const getDataObat = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/api/obat");
+      const response = await axios.get("https://be-production-6fef.up.railway.app/api/obat");
       setDataObat(response.data);
     } catch (error) {
       console.error("Gagal mengambil data:", error.message);

@@ -16,7 +16,7 @@ export default function DashboardAdmin() {
   useEffect(() => {
     const fetchPasiens = async () => {
       try {
-        const res = await fetch("http://localhost:8080/pasien");
+        const res = await fetch("https://be-production-6fef.up.railway.app/pasien");
         if (!res.ok) throw new Error("Gagal mengambil data pasien");
         const data = await res.json();
         setPasiens(data);
