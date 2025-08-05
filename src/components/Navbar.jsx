@@ -4,6 +4,7 @@ import {
   faHouse,
   faUserInjured,
   faSignOutAlt,
+  faClipboardList,
   faHospital,
   faStethoscope,
 } from "@fortawesome/free-solid-svg-icons";
@@ -102,6 +103,42 @@ export default function Navbar() {
                 <FontAwesomeIcon icon={faStethoscope} className="me-2" />
                 Farmasi
               </NavLink>
+            </li>
+
+            <li className="nav-item dropdown">
+              <a
+                href="#!"
+                className="nav-link dropdown-toggle d-flex align-items-center text-primary"
+                id="pendaftaranDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <FontAwesomeIcon icon={faClipboardList} className="me-2" />
+                Pendaftaran
+              </a>
+              <ul className="dropdown-menu">
+                <li>
+                  <Link className="dropdown-item" to="/pendaftaran/riwayat">
+                    Data Pendaftaran Konsultasi dan Pemeriksaan
+                  </Link>
+                </li>
+                <li>
+                  <Link className="dropdown-item" to="/pendaftaran">
+                    Daftar Konsultasi dan Pemeriksaan
+                  </Link>
+                </li>
+                <li>
+                  <Link className="dropdown-item" to="/rawatinap">
+                    Pendaftaran Rawat Inap
+                  </Link>
+                </li>
+                <li>
+                  <Link className="dropdown-item" to="/riwayatrawatinap">
+                    Lihat Rawat Inap
+                  </Link>
+                </li>
+              </ul>
             </li>
           </ul>
 
