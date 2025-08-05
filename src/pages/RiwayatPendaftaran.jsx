@@ -21,23 +21,23 @@ export default function RiwayatPendaftaran({ token }) {
 
   if (loading)
     return (
-  <>
-  <Navbar />
-      <div className="container mt-5 text-center">
-        <div className="spinner-border text-primary" role="status" />
-        <p className="mt-2">Loading Data pendaftaran...</p>
-      </div>
-    </>
+      <>
+        <Navbar />
+        <div className="container mt-5 text-center">
+          <div className="spinner-border text-primary" role="status" />
+          <p className="mt-2">Loading Data pendaftaran...</p>
+        </div>
+      </>
     );
 
   if (list.length === 0)
     return (
       <>
-      <Navbar />
-      <div className="container mt-5 text-center">
-        <h2>Riwayat Pendaftaran</h2>
-        <p className="text-muted">Tidak ada Data pendaftaran.</p>
-      </div>
+        <Navbar />
+        <div className="container mt-5 text-center">
+          <h2>Riwayat Pendaftaran</h2>
+          <p className="text-muted">Tidak ada Data pendaftaran.</p>
+        </div>
       </>
     );
 
@@ -50,7 +50,7 @@ export default function RiwayatPendaftaran({ token }) {
         </h2>
         <div className="row">
           {/* Kolom Konsultasi */}
-          <div className="col-md-6 mb-4">
+          <div className="col-12 col-md-6 mb-4">
             <h5 className="text-center mb-3 text-primary">Konsultasi</h5>
             <div className="scroll-container">
               {list
@@ -96,7 +96,7 @@ export default function RiwayatPendaftaran({ token }) {
           </div>
 
           {/* Kolom Pemeriksaan */}
-          <div className="col-md-6 mb-4">
+          <div className="col-12 col-md-6 mb-4">
             <h5 className="text-center mb-3 text-success">Pemeriksaan</h5>
             <div className="scroll-container">
               {list
@@ -141,9 +141,37 @@ export default function RiwayatPendaftaran({ token }) {
             </div>
           </div>
         </div>
-
-        
       </div>
+
+      <style>{`
+        .scroll-container {
+          max-height: 70vh;
+          overflow-y: auto;
+          padding-right: 10px;
+        }
+
+        .animate-card {
+          animation: fadeInUp 0.5s ease forwards;
+          opacity: 0;
+        }
+
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @media (max-width: 768px) {
+          .scroll-container {
+            max-height: unset;
+          }
+        }
+      `}</style>
     </>
   );
 }

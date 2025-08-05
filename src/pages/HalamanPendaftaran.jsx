@@ -1,13 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
-// import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Navbar from "../components/Navbar";
 import HeroResep from "../components/HeroResep";
 import Footer from "../components/Footer";
 
 export default function HalamanPendaftaran() {
-  // const navigate = useNavigate();
   const [formData, setFormData] = useState({
     nama: "",
     email: "",
@@ -22,12 +20,7 @@ export default function HalamanPendaftaran() {
     const today = new Date();
     const tomorrow = new Date(today);
     tomorrow.setDate(today.getDate() + 1);
-
-    const year = tomorrow.getFullYear();
-    const month = String(tomorrow.getMonth() + 1).padStart(2, "0");
-    const day = String(tomorrow.getDate()).padStart(2, "0");
-
-    return `${year}-${month}-${day}`;
+    return tomorrow.toISOString().split("T")[0]; // yyyy-mm-dd
   };
 
   const handleChange = (e) => {
@@ -37,17 +30,6 @@ export default function HalamanPendaftaran() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // const token = localStorage.getItem("token");
-    // if (!token) {
-    //   Swal.fire({
-    //     icon: "warning",
-    //     title: "Login Diperlukan",
-    //     text: "Anda harus login terlebih dahulu.",
-    //     confirmButtonText: "Login Sekarang",
-    //   }).then(() => navigate("/login"));
-    //   return;
-    // }
 
     const confirm = await Swal.fire({
       title: "Konfirmasi Pendaftaran",
@@ -68,7 +50,7 @@ export default function HalamanPendaftaran() {
         formData
       );
 
-      if (response.status === 201 || response.status === 200) {
+      if (response.status === 200 || response.status === 201) {
         await Swal.fire({
           icon: "success",
           title: "Pendaftaran Berhasil!",
@@ -101,16 +83,18 @@ export default function HalamanPendaftaran() {
     <>
       <Navbar />
       <HeroResep />
-      <div className="container mt-5 mb-5">
-        <h2 className="mb-4 text-center fw-bold text-primary">📝 Formulir Pendaftaran</h2>
+
+      <div className="container py-5">
+        <h2 className="mb-4 text-center fw-bold text-primary">
+          📝 Formulir Pendaftaran
+        </h2>
 
         <form
           onSubmit={handleSubmit}
-          className="shadow-lg p-5 bg-white rounded-4 border border-light-subtle"
-          style={{ animation: "fadeIn 0.6s ease" }}
+          className="shadow-lg p-4 p-md-5 bg-white rounded-4 border border-light-subtle"
         >
           <div className="row g-4">
-            <div className="col-md-6">
+            <div className="col-md-6 col-12">
               <label className="form-label fw-semibold">Nama Lengkap</label>
               <input
                 type="text"
@@ -123,7 +107,7 @@ export default function HalamanPendaftaran() {
               />
             </div>
 
-            <div className="col-md-6">
+            <div className="col-md-6 col-12">
               <label className="form-label fw-semibold">Email</label>
               <input
                 type="email"
@@ -136,7 +120,7 @@ export default function HalamanPendaftaran() {
               />
             </div>
 
-            <div className="col-md-6">
+            <div className="col-md-6 col-12">
               <label className="form-label fw-semibold">Jenis Kelamin</label>
               <select
                 name="gender"
@@ -151,7 +135,7 @@ export default function HalamanPendaftaran() {
               </select>
             </div>
 
-            <div className="col-md-6">
+            <div className="col-md-6 col-12">
               <label className="form-label fw-semibold">Jenis Pendaftaran</label>
               <select
                 name="jenis"
@@ -165,7 +149,7 @@ export default function HalamanPendaftaran() {
               </select>
             </div>
 
-            <div className="col-md-6">
+            <div className="col-md-6 col-12">
               <label className="form-label fw-semibold">Kategori</label>
               <select
                 name="kategori"
@@ -182,7 +166,7 @@ export default function HalamanPendaftaran() {
               </select>
             </div>
 
-            <div className="col-md-6">
+            <div className="col-md-6 col-12">
               <label className="form-label fw-semibold">Tanggal Kunjungan</label>
               <input
                 type="date"
@@ -211,21 +195,15 @@ export default function HalamanPendaftaran() {
           <div className="text-end mt-4">
             <button
               type="submit"
-              className="btn btn-primary px-4 py-2 rounded-3 fw-semibold shadow-sm"
+              className="btn btn-primary px-4 py-2 rounded-3 fw-semibold shadow-sm w-100 w-md-auto"
             >
               Kirim Pendaftaran
             </button>
           </div>
         </form>
       </div>
-      <Footer />
 
-      <style>{`
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
+      <Footer />
     </>
   );
 }

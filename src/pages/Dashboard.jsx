@@ -3,6 +3,7 @@ import HeroSection from "../components/HeroSection";
 import ServicesSection from "../components/ServicesSection";
 import TestimonialsSection from "../components/TestimonialsSection";
 import Footer from "../components/Footer";
+// import BackToTop from "../components/BackToTop";
 // import MagicBento from '../MagicBento'
 
 
@@ -13,6 +14,7 @@ export default function Dashboard() {
       <HeroSection />
       <ServicesSection />
       <TestimonialsSection />
+      {/* <BackToTop /> */}
       <Footer />
     </div>
   );
