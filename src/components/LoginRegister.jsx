@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import SplitText from "../SplitText";
 import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 
 export default function LoginRegister() {
   const [isLogin, setIsLogin] = useState(true);
@@ -51,6 +52,8 @@ export default function LoginRegister() {
   };
 
   return (
+    <>
+    <Navbar />
     <div className="container min-vh-100 d-flex flex-column justify-content-center align-items-center bg-light px-3">
       {/* Header */}
       <div className="text-center mb-4">
@@ -136,5 +139,6 @@ export default function LoginRegister() {
         </div>
       </div>
     </div>
+    </>
   );
 }
