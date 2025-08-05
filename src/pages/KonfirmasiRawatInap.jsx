@@ -2,12 +2,12 @@ import React from "react";
 import axios from "axios";
 export default function KonfirmasiRawatInap({ request }) {
   const handleSetujui = async () => {
-    const res = await axios.post(`http://localhost:8080/api/inap/${request.id}/setujui`);
+    const res = await axios.post(`https://be-production-6fef.up.railway.app/api/inap/${request.id}/setujui`);
     window.location.href = res.data.payment_url; // langsung ke payment
   };
 
   const handleTolak = async () => {
-    await axios.post(`http://localhost:8080/api/inap/${request.id}/tolak`);
+    await axios.post(`https://be-production-6fef.up.railway.app/api/inap/${request.id}/tolak`);
     alert("Anda menolak tawaran rawat inap.");
   };
 

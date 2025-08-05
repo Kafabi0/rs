@@ -7,7 +7,7 @@ export default function RiwayatPendaftaran({ token }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/pendaftaran", {
+    fetch("https://be-production-6fef.up.railway.app/api/pendaftaran", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())

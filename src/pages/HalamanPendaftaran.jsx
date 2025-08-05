@@ -64,7 +64,7 @@ export default function HalamanPendaftaran() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/pendaftaran",
+        "https://be-production-6fef.up.railway.app/api/pendaftaran",
         formData
       );
 

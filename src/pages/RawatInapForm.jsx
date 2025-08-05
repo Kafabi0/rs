@@ -16,7 +16,7 @@ export default function RawatInapForm() {
   const submit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8080/api/rawat-inap", {
+      await axios.post("https://be-production-6fef.up.railway.app/api/rawat-inap", {
         user_id: 1,
         nama_pasien: nama,
         keluhan: keluhan,

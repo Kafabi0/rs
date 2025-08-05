@@ -14,7 +14,7 @@ export default function RiwayatRawatInap() {
     }
 
     axios
-      .get(`http://localhost:8080/api/rawat-inap/nama_pasien/${username}`)
+      .get(`https://be-production-6fef.up.railway.app/api/rawat-inap/nama_pasien/${username}`)
       .then((res) => setRawats(res.data))
       .catch(() => setError("Gagal ambil data rawat inap"));
   }, []);

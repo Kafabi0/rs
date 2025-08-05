@@ -5,7 +5,7 @@ export default function DaftarRawatInapUser() {
   const [list, setList] = useState([]);
 
   const fetchData = async () => {
-    const res = await axios.get("http://localhost:8080/api/rawat-inap");
+    const res = await axios.get("https://be-production-6fef.up.railway.app/api/rawat-inap");
     setList(res.data.filter((i) => i.user_id === 1)); // Ganti sesuai login
   };
 
@@ -14,7 +14,7 @@ export default function DaftarRawatInapUser() {
   }, []);
 
   const setujui = async (id) => {
-    await axios.put(`http://localhost:8080/api/rawat-inap/${id}/setujui`);
+    await axios.put(`https://be-production-6fef.up.railway.app/api/rawat-inap/${id}/setujui`);
     alert("Disetujui, lanjutkan ke pembayaran.");
     fetchData();
   };

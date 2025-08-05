@@ -31,7 +31,7 @@ export default function TambahProduk() {
     formData.append("gambar", file);
 
     try {
-      await axios.post("http://localhost:8080/api/produk/tambah", formData, {
+      await axios.post("https://be-production-6fef.up.railway.app/api/produk/tambah", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       alert("Produk berhasil ditambahkan");

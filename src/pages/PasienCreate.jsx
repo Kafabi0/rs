@@ -42,7 +42,7 @@ export default function PasienCreate() {
         umur: Number(form.umur),
       };
 
-      const res = await fetch("http://localhost:8080/api/admin/pasien/create", {
+      const res = await fetch("https://be-production-6fef.up.railway.app/api/admin/pasien/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

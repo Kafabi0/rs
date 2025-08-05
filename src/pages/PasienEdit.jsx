@@ -14,7 +14,7 @@ export default function PasienEdit() {
   });
 
   useEffect(() => {
-    fetch(`http://localhost:8080/admin/pasien/${id}`)
+    fetch(`https://be-production-6fef.up.railway.app/admin/pasien/${id}`)
       .then((res) => res.json())
       .then((data) => setForm(data));
   }, [id]);

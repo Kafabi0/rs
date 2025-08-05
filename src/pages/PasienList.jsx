@@ -9,7 +9,7 @@ export default function PasienList() {
   const [searchTerm, setSearchTerm] = useState("");
 
   const fetchPasiens = async () => {
-    const res = await fetch("http://localhost:8080/admin/pasien");
+    const res = await fetch("https://be-production-6fef.up.railway.app/admin/pasien");
     const data = await res.json();
     setPasiens(data);
   };
@@ -20,7 +20,7 @@ export default function PasienList() {
 
   const handleDelete = async (id) => {
     if (window.confirm("Yakin ingin menghapus pasien ini?")) {
-      await fetch(`http://localhost:8080/admin/pasien/${id}`, {
+      await fetch(`https://be-production-6fef.up.railway.app/admin/pasien/${id}`, {
         method: "DELETE",
       });
       fetchPasiens();
