@@ -21,18 +21,24 @@ export default function RiwayatPendaftaran({ token }) {
 
   if (loading)
     return (
+  <>
+  <Navbar />
       <div className="container mt-5 text-center">
         <div className="spinner-border text-primary" role="status" />
         <p className="mt-2">Loading Data pendaftaran...</p>
       </div>
+    </>
     );
 
   if (list.length === 0)
     return (
+      <>
+      <Navbar />
       <div className="container mt-5 text-center">
         <h2>Riwayat Pendaftaran</h2>
         <p className="text-muted">Tidak ada Data pendaftaran.</p>
       </div>
+      </>
     );
 
   return (
