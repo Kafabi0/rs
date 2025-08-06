@@ -15,7 +15,7 @@ export default function NotFound({ onNotFound })  {
       }}
     >
       <img
-        src="../public/assets/404.png"
+        src="../assets/404.png"
         alt="Hospital 404"
         style={{ maxWidth: "350px", marginBottom: "20px" }}
       />
