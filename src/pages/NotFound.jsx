@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
-
-export default function NotFound() {
+import { useEffect } from "react";
+export default function NotFound({ onNotFound })  {
+    useEffect(() => {
+    if (onNotFound) onNotFound();
+  }, [onNotFound]);
   return (
     <div
       className="d-flex flex-column justify-content-center align-items-center text-center px-3"
