@@ -25,6 +25,7 @@ import React, { useState } from "react";
 import ListObat from "./pages/admin/ListObat";
 import EditObat from "./pages/admin/EditObat";
 import { Analytics } from '@vercel/analytics/react';
+import NotFound from "./pages/NotFound";
 
 export default function App() {
     const [showChatbot, setShowChatbot] = useState(false);
@@ -78,6 +79,7 @@ export default function App() {
         <Route path="/admin/adminfarmasi" element={<AdminFarmasi />} />
         <Route path="/admin/daftarobat" element={<ListObat />} />
         <Route path="/admin/editobat" element={<EditObat />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <ChatButton onClick={toggleChatbot} />
       {showChatbot && <ChatBot onClose={toggleChatbot} />}
