@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import Select from "react-select"; // <-- Import React Select
 import Navadmin from "../../components/Navadmin";
 
 export default function AdminFarmasi() {
@@ -13,6 +14,15 @@ export default function AdminFarmasi() {
     kategori: "",
   });
 
+  // Opsi kategori untuk React Select
+  const kategoriOptions = [
+    { value: "Obat Umum", label: "Obat Umum" },
+    { value: "Obat Gigi", label: "Obat Gigi" },
+    { value: "Obat Anak", label: "Obat Anak" },
+    { value: "Obat Jantung", label: "Obat Jantung" },
+    { value: "Obat Kulit", label: "Obat Kulit" },
+  ];
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
@@ -21,7 +31,6 @@ export default function AdminFarmasi() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validasi harga dan stok
     const stok = parseInt(form.stok, 10);
     const harga = parseInt(form.harga, 10);
 
@@ -35,11 +44,7 @@ export default function AdminFarmasi() {
       return;
     }
 
-    const dataToSend = {
-      ...form,
-      stok,
-      harga,
-    };
+    const dataToSend = { ...form, stok, harga };
 
     try {
       await axios.post("https://be-production-6fef.up.railway.app/api/obat", dataToSend);
@@ -76,6 +81,7 @@ export default function AdminFarmasi() {
             <div className="card-body">
               <form onSubmit={handleSubmit}>
                 <div className="row">
+                  {/* Nama, Jenis, Stok, Harga */}
                   {[
                     { label: "Nama Obat", name: "nama" },
                     { label: "Jenis Obat", name: "jenis" },
@@ -93,7 +99,6 @@ export default function AdminFarmasi() {
                       min: 1,
                       placeholder: "Minimal Rp 1",
                     },
-                    { label: "Kategori", name: "kategori" },
                   ].map((field, idx) => (
                     <div className="col-md-6 mb-3" key={idx}>
                       <label className="form-label">{field.label}</label>
@@ -109,6 +114,27 @@ export default function AdminFarmasi() {
                       />
                     </div>
                   ))}
+
+                  {/* React Select Kategori */}
+                  <div className="col-md-6 mb-3">
+                    <label className="form-label">Kategori</label>
+                    <Select
+                      options={kategoriOptions}
+                      value={kategoriOptions.find(
+                        (opt) => opt.value === form.kategori
+                      )}
+                      onChange={(selected) =>
+                        setForm((prev) => ({
+                          ...prev,
+                          kategori: selected ? selected.value : "",
+                        }))
+                      }
+                      placeholder="Pilih Kategori"
+                      isClearable
+                    />
+                  </div>
+
+                  {/* Textarea Kegunaan */}
                   <div className="col-12 mb-3">
                     <label className="form-label">Kegunaan</label>
                     <textarea
@@ -122,6 +148,7 @@ export default function AdminFarmasi() {
                     ></textarea>
                   </div>
                 </div>
+
                 <button type="submit" className="btn btn-success w-100">
                   Simpan Obat
                 </button>
