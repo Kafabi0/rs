@@ -24,6 +24,7 @@ import AdminFarmasi from "./pages/admin/AdminFarmasi";
 import React, { useState } from "react";
 import ListObat from "./pages/admin/ListObat";
 import EditObat from "./pages/admin/EditObat";
+// import { Analytics } from '@vercel/analytics/react';
 
 export default function App() {
     const [showChatbot, setShowChatbot] = useState(false);
@@ -80,6 +81,7 @@ export default function App() {
       </Routes>
       <ChatButton onClick={toggleChatbot} />
       {showChatbot && <ChatBot onClose={toggleChatbot} />}
+      {/* <Analytics /> */}
     </Router>
   );
 }
